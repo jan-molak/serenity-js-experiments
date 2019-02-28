@@ -1,0 +1,43 @@
+{
+  "name": "serenity-js-experiments",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "clean": "rimraf target",
+    "lint": "tslint --project ./tsconfig.json --config ./tslint.json --format stylish",
+    "test:update-serenity": "serenity update --artifact net.serenity-bdd:serenity-cli:jar:all:2.1.5 --repository https://jcenter.bintray.com/",
+    "test:acceptance": "protractor ./protractor.conf.js --baseUrl https://todomvc.com",
+    "test:report": "serenity run --artifact net.serenity-bdd:serenity-cli:jar:all:2.1.5",
+    "test": "failsafe clean test:update-serenity test:acceptance test:report"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jan-molak/serenity-js-experiments.git"
+  },
+  "author": "Jan Molak <jan.molak@serenity.io>",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/jan-molak/serenity-js-experiments/issues"
+  },
+  "homepage": "https://github.com/jan-molak/serenity-js-experiments#readme",
+  "devDependencies": {
+    "@serenity-js/assertions": "next",
+    "@serenity-js/core": "next",
+    "@serenity-js/cucumber": "next",
+    "@serenity-js/protractor": "next",
+    "@types/cucumber": "^4.0.5",
+    "@types/node": "^11.9.5",
+    "chromedriver": "^2.46.0",
+    "cucumber": "^5.1.0",
+    "npm-failsafe": "^0.4.1",
+    "protractor": "^5.4.2",
+    "protractor-cucumber-framework": "^6.1.1",
+    "rimraf": "^2.6.3",
+    "serenity-cli": "^0.11.3",
+    "ts-node": "^8.0.2",
+    "tslint": "^5.13.0",
+    "tslint-microsoft-contrib": "^6.0.0",
+    "typescript": "^3.3.3333"
+  }
+}
