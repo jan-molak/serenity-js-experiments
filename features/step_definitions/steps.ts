@@ -1,7 +1,7 @@
 import { Duration } from '@serenity-js/core';
 import { WithStage } from '@serenity-js/cucumber';
 import { Given, TableDefinition, Then, When } from 'cucumber';
-import { Navigate } from '@serenity-js/protractor';
+import { Navigate, ExecuteScript } from '@serenity-js/protractor';
 import { contains, Ensure, equals } from '@serenity-js/assertions';
 import { AddATodo, RecordedTodos } from '../../src';
 
@@ -14,7 +14,8 @@ Given(/^(.*) has an empty todo list/, { timeout: Duration.ofSeconds(3).milliseco
 Given(/^(.*) has a todo list containing:/, function (this: WithStage, name: string, items: TableDefinition) {
     return this.stage.theActorCalled(name).attemptsTo(
         Navigate.to('/examples/angularjs/#/'),
-        ...namesOf(items).map(AddATodo.called)
+        ExecuteScript.sync('console.log("hello world")'),       // this adds the `reportData` entry to the report
+        ...namesOf(items).map(AddATodo.called),
     );
 });
 
